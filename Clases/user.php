@@ -54,7 +54,16 @@ class User
   }
 
   public function existeEmail(){
-  return false;
+
+  include("dbConecction.php");
+
+  $sql = "select count(*) from movies_db.users where email = '{$this->email}'";
+  $result = $db->query($sql);
+  $existe = 0;
+  foreach ($result as $row) {
+  $existe = $row[0];
+  }
+  return $existe;
   }
     /**
      * Get the value of Id
