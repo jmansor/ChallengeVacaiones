@@ -67,13 +67,13 @@ if($_POST){
 
       <div class="col-xs-12 col-sm-6 col-md-6">
     <div class="form-group ">
-      <input type="text" name="display_name" value="<?=$newUser?>" id="display_name" class="form-control input-lg" placeholder="Display Name" tabindex="3">
+      <input type="text" name="display_name" value="<?=$newUser->getName()?>" id="display_name" class="form-control input-lg" placeholder="Display Name" tabindex="3">
     </div>
       </div>
       <div class="col-xs-12 col-sm-6 col-md-6">
     <div class="form-group">
 
-      <input type="email" name="email" id="email" value="<?=$email?>"class="form-control input-lg" placeholder="Email Address" tabindex="4">
+      <input type="email" name="email" id="email" value="<?=$newUser->getEmail()?>"class="form-control input-lg" placeholder="Email Address" tabindex="4">
     </div>
       </div>
 
@@ -82,7 +82,7 @@ if($_POST){
     <div class="row">
       <div class="col-xs-12 col-sm-6 col-md-6">
         <div class="form-group">
-          <input type="password" name="password" value="<?=$password?>"id="password" class="form-control input-lg" placeholder="Password" tabindex="6">
+          <input type="password" name="password" value="<?=$newUser->getPassword()?>"id="password" class="form-control input-lg" placeholder="Password" tabindex="6">
         </div>
       </div>
       <div class="col-xs-12 col-sm-6 col-md-6">
