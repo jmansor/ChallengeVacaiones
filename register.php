@@ -13,19 +13,14 @@
    $newUser = new User($_POST['display_name'],$_POST['email'],$_POST['password']);
    $confirmPassword=trim($_POST['password_confirmation']);
    $errors = $newUser->validar($confirmPassword);
-  
-   // if (empty($errors)) {
-   //   $usuario = crearUsuario($_POST);
-   //   guardarUsuario($usuario);
-   //   header('location: login.php');
-   //   exit;
+
+   if (empty($errors)) {
+     $newUser->saveUser();
+     header('location: login.php');
+     exit;
   }
+}
  ?>
-
-
-
-
-
 
 <html>
   <head>
@@ -137,9 +132,6 @@
 
 
 </form>
-
-
-
   </body>
 
 </html>

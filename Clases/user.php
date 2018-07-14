@@ -53,9 +53,22 @@ class User
       return $errors;
   }
 
+  public function saveUser()
+  {
+
+  include("dbConecction.php"); //Esto debe estar mal asi, refactor
+
+  $a = password_hash(trim($this->password),PASSWORD_DEFAULT);
+  $sql = "INSERT INTO movies_db.users (name, email, password, role, created_at) VALUES ('{$this->name}}', '{$this->email}', '{$a}', '1', '2000-01-01')";
+  $result = $db->query($sql);
+
+  }
+
+
+
   public function existeEmail(){
 
-  include("dbConecction.php");
+  include("dbConecction.php");//Esto debe estar mal asi, refactor
 
   $sql = "select count(*) from movies_db.users where email = '{$this->email}'";
   $result = $db->query($sql);
@@ -65,6 +78,7 @@ class User
   }
   return $existe;
   }
+
     /**
      * Get the value of Id
      *
