@@ -24,9 +24,38 @@ class User
   }
 
   public function validar($confirmPassword){
+      $errors=[];
 
+
+      if($this->name == ''){
+          $errors[]='The name can not be empty.';
+      }
+      if($this->email == ''){
+          $errors[]='The email can not be empty.';
+      }
+      else if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+
+         $errors[]= "Invalid email format.";
+
+      }
+      else if ($this->existeEmail()){ //existeEmail() usar funcion, no se porque no anda.
+         $errors[]= "Email in use.";
+      }
+
+      if($this->password == "" || $confirmPassword ==""){
+        $errors[]="Complete both passwords.";
+      }elseif ($this->password !=$confirmPassword) {
+        $errors[]="Both passwords must match.";
+      }elseif (strlen($this->password)<8) {
+        $errors[]="Password must have at least 8 characters.";
+      }
+
+      return $errors;
   }
 
+  public function existeEmail(){
+  return false;
+  }
     /**
      * Get the value of Id
      *

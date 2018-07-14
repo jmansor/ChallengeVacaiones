@@ -4,25 +4,29 @@
  require_once("Clases/user.php");
 
  $newUser = new User("","","");
-$confirmPassword="";
-$errors=[];
+ $confirmPassword="";
+ $errors=[];
 
 
-if($_POST){
+ if($_POST){
 
-  $newUser = new User($_POST['display_name'],$_POST['email'],$_POST['password']);
-
-
+   $newUser = new User($_POST['display_name'],$_POST['email'],$_POST['password']);
    $confirmPassword=trim($_POST['password_confirmation']);
-   // $errors = validar_form($_POST);
-
+   $errors = $newUser->validar($confirmPassword);
+  
    // if (empty($errors)) {
    //   $usuario = crearUsuario($_POST);
    //   guardarUsuario($usuario);
    //   header('location: login.php');
    //   exit;
-    }
+  }
  ?>
+
+
+
+
+
+
 <html>
   <head>
     <meta charset="utf-8">
