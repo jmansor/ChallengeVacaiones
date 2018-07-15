@@ -1,8 +1,11 @@
 <?php
- require_once("functions.php");
-  require_once("Clases/movies.php");
-    require_once("Clases/movie.php");
+require_once("functions.php");
+require_once("Clases/movies.php");
+require_once("Clases/movie.php");
+require_once("Clases/genres.php");
+require_once("Clases/genre.php");
 
+$genres = Genres::ObtenerTodos();
 //var_dump($_SESSION);
  if (!isLogued()) {
    header('location: login.php');
@@ -10,7 +13,7 @@
   	}
 
 
-//var_dump($todasLasPeliculas);
+//var_dump($genres);
 ?>
 <html>
   <head>
@@ -58,9 +61,9 @@
               <div class="form-group ">
                  <select class="selectpicker form-control input-lg" >
                    <option disabled selected >Genre</option>
-                    <option>Mustard</option>
-                    <option>Ketchup</option>
-                    <option>Relish</option>
+<?php foreach($genres as $genre): ?>
+                    <option><?=$genre->getName();?></option>
+            <?php endforeach; ?>
                   </select>
 
                 <!-- <input type="text" name="genere" value="" id="genre" class="form-control input-lg" placeholder="Genre" tabindex="3"> -->
