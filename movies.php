@@ -1,5 +1,7 @@
 <?php
  require_once("functions.php");
+  require_once("Clases/movies.php");
+    require_once("Clases/movie.php");
 
 //var_dump($_SESSION);
  if (!isLogued()) {
@@ -7,6 +9,8 @@
    exit;
   	}
 
+$todasLasPeliculas = Movies::ObtenerTodos();
+//var_dump($todasLasPeliculas);
 ?>
 <html>
   <head>
@@ -25,6 +29,20 @@
   <body>
 <?php include("nav.php") ?>
 
+
+ <div class="card-container row justify-content-center">
+<?php foreach($todasLasPeliculas as $pelicula): ?>
+    <div class="about-card col-11 col-md-2" style="width: 18rem;">
+    <img class="card-img-top card-pic" src="html/images/movie-placeholder.jpg" alt="Card image cap">
+    <div class="card-body">
+    <h5 class="card-title"><?=$pelicula->getTitle();?></h5>
+    <p class="card-text"><?=$pelicula->getRaiting();?></p>
+    </div>
+  </div>
+  <?php endforeach; ?>
+</div>
+
+</section>
 
   </body>
 

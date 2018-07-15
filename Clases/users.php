@@ -22,7 +22,7 @@ class Users{
 
          //Instancio un objeto de tipo Usuario
         $UnUsuario = new User($UnRegistro['name'], $UnRegistro['email'],'password',$UnRegistro['role'],$UnRegistro['id'],$UnRegistro['created_at']);
-                                    
+
         //Agrego el objeto Usuaio al array
         $UsuariosADevolver[] = $UnUsuario;
        }
