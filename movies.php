@@ -29,14 +29,38 @@ $todasLasPeliculas = Movies::ObtenerTodos();
   <body>
 <?php include("nav.php") ?>
 
-
- <div class="card-container row justify-content-center">
+<div class="card-container row justify-content-center">
+  <div class="col-11 align-self-start about-card ">
+      <a href="updateMovie.php">+Add new movie</a>
+    </div>
+</div>
+ <div class="card-container row justify-content-center ">
 <?php foreach($todasLasPeliculas as $pelicula): ?>
-    <div class="about-card col-11 col-md-2" style="width: 18rem;">
+    <div class="about-card col-11 col-md-3" style="width: 18rem;">
     <img class="card-img-top card-pic" src="html/images/movie-placeholder.jpg" alt="Card image cap">
     <div class="card-body">
     <h5 class="card-title"><?=$pelicula->getTitle();?></h5>
     <p class="card-text"><?=$pelicula->getRaiting();?></p>
+    <div class="container">
+	<div class="row justify-content-around">
+<a href="#" class="btn btn-primary a-btn-slide-text">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        <span><strong>Add</strong></span>
+    </a>
+    <a href="#" class="btn btn-primary a-btn-slide-text">
+        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+        <span><strong>Edit</strong></span>
+    </a>
+    <a href="#" class="btn btn-primary a-btn-slide-text">
+        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+        <span><strong>View</strong></span>
+    </a>
+    <a href="#" class="btn btn-primary a-btn-slide-text">
+       <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        <span><strong>Delete</strong></span>
+    </a>
+	</div>
+</div>
     </div>
   </div>
   <?php endforeach; ?>

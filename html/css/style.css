@@ -95,7 +95,7 @@ background-image: url("../images/doodles.png");
   background-color: rgba(185, 176, 176,0.7);
   margin: 10px;
   border-radius: 10px;
-  border: solid 1px black;
+  /* border: solid 1px black; */
 }
 
 .icon-ecommerce{
