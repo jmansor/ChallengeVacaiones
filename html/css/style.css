@@ -188,3 +188,15 @@ article img{
 .social-items-container{
   height: 50px;
 }
+
+.table-users tbody tr:hover {
+	cursor: pointer;
+	background-color: #eee;
+}
+.nav-user-photo {
+     vertical-align: middle;
+}
+.user_panel {
+    width: 50%;
+}
+i {  vertical-align: middle; }
