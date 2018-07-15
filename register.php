@@ -2,6 +2,7 @@
 <?php
 
  require_once("Clases/user.php");
+ require_once("functions.php");
 
  $newUser = new User("","","");
  $confirmPassword="";

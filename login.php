@@ -3,6 +3,7 @@
 <?php
 
  require_once("Clases/user.php");
+ require_once("functions.php");
 // if (estaLogueado()) {
 // 		header('location: index.php');
 // 		exit;	}
@@ -17,14 +18,13 @@ $logedUser= new User("",trim($_POST['email']),trim($_POST['password']));
 $errors=$logedUser->validarLogin();
 
 if(empty($errors)){
-  //var_dump($_POST);
 
-  // loguear($usuario = existeUsuario($userName));
-  // if (isset($_POST["remember"])) {
-	//    setcookie('id', $usuario['id'], time() + 3600 * 24 * 30);
-  //    setcookie('displayName', $usuario['displayName'], time() + 3600 * 24 * 30);
-  //    }
-   	header('location: users.php');
+
+  logInUser($logedUser);  //preguntar donde deberia estar el codigo de esto************************
+  if (isset($_POST["remember"])) {
+	   setcookie('email', $logedUser->getEmail(), time() + 3600 * 24 * 30);
+     }
+   	header('location: index.php');
    	exit;
 }
 }

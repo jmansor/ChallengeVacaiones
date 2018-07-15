@@ -23,6 +23,8 @@ class User
     $this->role = trim($role);
   }
 
+
+
   public function validar($confirmPassword){
       $errors=[];
 
@@ -86,7 +88,7 @@ class User
    $result = $db->query($sql);
 
    if(count($result)==1)
-   {  
+   {
      foreach ($result as $row) {
 
 
