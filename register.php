@@ -4,14 +4,14 @@
  require_once("Clases/user.php");
  require_once("functions.php");
 
- $newUser = new User("","","");
+ $newUser = new User("","","","","","");
  $confirmPassword="";
  $errors=[];
 
 
  if($_POST){
 
-   $newUser = new User($_POST['display_name'],$_POST['email'],$_POST['password']);
+   $newUser = new User($_POST['display_name'],$_POST['email'],$_POST['password'],"","","");
    $confirmPassword=trim($_POST['password_confirmation']);
    $errors = $newUser->validar($confirmPassword);
 

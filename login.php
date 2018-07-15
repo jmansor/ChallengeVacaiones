@@ -8,13 +8,13 @@
 // 		header('location: index.php');
 // 		exit;	}
 
-$logedUser= new User("","","");
+$logedUser= new User("","","","","","");
  $errors=[];
 
 if($_POST){
 // $userName=trim($_POST['userName']);
 // $errors=validarLogin($_POST);
-$logedUser= new User("",trim($_POST['email']),trim($_POST['password']));
+$logedUser= new User("",trim($_POST['email']),trim($_POST['password']),"","","");
 $errors=$logedUser->validarLogin();
 
 if(empty($errors)){

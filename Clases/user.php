@@ -14,13 +14,15 @@ class User
   private $password;
   private $creationDate;
 
-  function __construct($name,$email,$password,$role=1)
+  function __construct($name,$email,$password,$role=1,$id=null,$creationDate)
   {
 
     $this->name = trim($name);
     $this->email = trim($email);
     $this->password = trim($password);
     $this->role = trim($role);
+    $this->id = trim($id);
+    $this->creationDate = trim($creationDate);
   }
 
 
