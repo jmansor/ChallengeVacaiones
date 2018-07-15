@@ -59,13 +59,45 @@ class User
   include("dbConecction.php"); //Esto debe estar mal asi, refactor
 
   $a = password_hash(trim($this->password),PASSWORD_DEFAULT);
-  $sql = "INSERT INTO movies_db.users (name, email, password, role, created_at) VALUES ('{$this->name}}', '{$this->email}', '{$a}', '1', '2000-01-01')";
+  $sql = "INSERT INTO movies_db.users (name, email, password, role, created_at) VALUES ('{$this->name}', '{$this->email}', '{$a}', '1', '2000-01-01')";
   $result = $db->query($sql);
 
   }
 
+ public function validarLogin(){
+
+   $errors=[];
+
+   if(!$this->existeEmail()){
+     $errors[]='Invalid email.';
+   }
+   else if(!$this->passwordMatch()){
+     $errors[]='Invalid password.';
+   }
 
 
+  return $errors;
+ }
+
+ private function passwordMatch(){
+   include("dbConecction.php"); //Esto debe estar mal asi, refactor
+  //$this->password = password_hash(trim($this->password),PASSWORD_DEFAULT);
+   $sql = "select * from movies_db.users where email = '{$this->email}'";
+   $result = $db->query($sql);
+
+   if(count($result)==1)
+   {  
+     foreach ($result as $row) {
+
+
+
+      if(password_verify($this->password,$row['password'])){
+        return true;
+      }
+   }
+  return false;
+ }
+}
   public function existeEmail(){
 
   include("dbConecction.php");//Esto debe estar mal asi, refactor

@@ -14,18 +14,18 @@ if($_POST){
 // $userName=trim($_POST['userName']);
 // $errors=validarLogin($_POST);
 $logedUser= new User("",trim($_POST['email']),trim($_POST['password']));
-
+$errors=$logedUser->validarLogin();
 
 if(empty($errors)){
-//var_dump($_POST);
+  //var_dump($_POST);
 
   // loguear($usuario = existeUsuario($userName));
   // if (isset($_POST["remember"])) {
 	//    setcookie('id', $usuario['id'], time() + 3600 * 24 * 30);
   //    setcookie('displayName', $usuario['displayName'], time() + 3600 * 24 * 30);
   //    }
-  // 		header('location: index.php');
-  // 	exit;
+   	header('location: users.php');
+   	exit;
 }
 }
 
@@ -52,7 +52,7 @@ if(empty($errors)){
             <div class="form-login">
             <h4>Welcome back.</h4>
               <hr class="colorgraph">
-              <!-- <?php if($errors) : ?>
+              <?php if($errors) : ?>
               <div class="alert alert-danger" role="alert">
               <ul>
                 <?php foreach($errors as $error): ?>
@@ -62,7 +62,7 @@ if(empty($errors)){
                <?php endforeach; ?>
                 </ul>
               </div>
-              <?php endif; ?> -->
+              <?php endif; ?>
 
             <input type="email" id="email" name="email"class="form-control input-sm chat-input" placeholder="Email" value="<?=$logedUser->getEmail()?>"/>
             </br>
