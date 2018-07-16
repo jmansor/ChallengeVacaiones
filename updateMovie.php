@@ -6,13 +6,18 @@ require_once("Clases/genres.php");
 require_once("Clases/genre.php");
 
 $genres = Genres::ObtenerTodos();
-//var_dump($_SESSION);
+
  if (!isLogued()) {
    header('location: login.php');
    exit;
   	}
 
+$movie = new Movie("","","","","","","","","");
+if($_POST){
 
+$movie = new Movie("","","",$_POST["title"],$_POST["rating"],$_POST["awards"],"",$_POST["length"],$_POST["genre"]);
+
+}
 //var_dump($genres);
 ?>
 <html>
@@ -51,7 +56,7 @@ $genres = Genres::ObtenerTodos();
       <!-- Titulo -->
       <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group ">
-          <input type="text" name="title" value="" id="title" class="form-control input-lg" placeholder="Title" tabindex="3">
+          <input type="text" name="title" value="<?=$movie->getTitle();?>" id="title" class="form-control input-lg" placeholder="Title" tabindex="3">
         </div>
       </div>
       <!-- Fin Titulo -->
@@ -59,10 +64,16 @@ $genres = Genres::ObtenerTodos();
             <!-- genre -->
             <div class="col-xs-12 col-sm-12 col-md-12">
               <div class="form-group ">
-                 <select class="selectpicker form-control input-lg" >
+                 <select class="selectpicker form-control input-lg" name="genre" id="genre">
                    <option disabled selected >Genre</option>
 <?php foreach($genres as $genre): ?>
-                    <option><?=$genre->getName();?></option>
+
+                    <?php if ($genre->getId()==$movie->getGenreId()): ?>
+                        <option  selected value="<?=$genre->getId();?>"><?=$genre->getName();?></option>
+                    <?php else: ?>
+                        <option  value="<?=$genre->getId();?>"><?=$genre->getName();?></option>
+                    <?php endif; ?>
+
             <?php endforeach; ?>
                   </select>
 
@@ -73,21 +84,21 @@ $genres = Genres::ObtenerTodos();
       <!-- Rating -->
       <div class="col-xs-12 col-sm-4 col-md-4">
         <div class="form-group ">
-          <input type="number" step="0.1" min=0 max=10 name="rating" value="" id="rating" class="form-control input-lg" placeholder="Rating" tabindex="3">
+          <input type="number" step="0.1" min=0 max=10 name="rating" value="<?=$movie->getRaiting();?>" id="rating" class="form-control input-lg" placeholder="Rating" tabindex="3">
         </div>
       </div>
       <!--Fin Rating  -->
       <!-- Awards -->
       <div class="col-xs-12 col-sm-4 col-md-4">
         <div class="form-group ">
-          <input type="number" name="awards" min=0 value="" id="awards" class="form-control input-lg" placeholder="Awards" tabindex="3">
+          <input type="number" name="awards" min=0 value="<?=$movie->getAwards();?>" id="awards" class="form-control input-lg" placeholder="Awards" tabindex="3">
         </div>
       </div>
       <!--Fin Awards  -->
       <!-- duracion -->
       <div class="col-xs-12 col-sm-4 col-md-4">
         <div class="form-group ">
-          <input type="number" name="duracion" step="10" min=0 value="" id="duracion" class="form-control input-lg" placeholder="Length (min)" tabindex="3">
+          <input type="number" name="length" step="10" min=0 value="<?=$movie->getLength();?>" id="length" class="form-control input-lg" placeholder="Length (min)" tabindex="3">
         </div>
       </div>
       <!--Fin duracion  -->

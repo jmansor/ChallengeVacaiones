@@ -22,7 +22,7 @@ function __construct($id,$createdAt,$updatedAt,$title,$raiting,$awards,$releaseD
   $this->awards=$awards;
   $this->releaseDate=$releaseDate;
   $this->length=$length;
-  $this->genereID=$genreID;
+  $this->genreID=$genreID;
 
 }
 
