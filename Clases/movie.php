@@ -1,6 +1,10 @@
 <?php
-
+require_once("Clases/genres.php");
+require_once("Clases/genre.php");
 class Movie{
+
+
+
 
 private $id;
 private $createdAt;
@@ -25,6 +29,82 @@ function __construct($id,$createdAt,$updatedAt,$title,$raiting,$awards,$releaseD
   $this->genreID=$genreID;
 
 }
+    public function validate(){
+    $errors=[];
+    $errors=array_merge($this->validateTitle(),$errors);
+    $errors=array_merge($this->validateGenre(),$errors);
+    $errors=array_merge($this->validateRating(),$errors);
+    $errors=array_merge($this->validateAwards(),$errors);
+    $errors=array_merge($this->validateLength(),$errors);
+    $errors=array_merge($this->validateGenre(),$errors);
+    return $errors;
+    }
+    private function validateGenre(){
+      $genreErrors=[];
+      if($this->genreID=='-1'){
+        $genreErrors[]='Select a genre.';
+      }
+      else{
+        $genres = Genres::ObtenerTodos();
+        //creo un array con todos los id validos.
+        $idgenres=[];
+        foreach ($genres as $genre) {
+          $idgenres[]=$genre->getId();
+        }
+        if(!in_array($this->genreID,$idgenres)){
+          $genreErrors[]='Invalid genre selected.';
+        }
+
+      }
+      return $genreErrors;
+    }
+    private function validateTitle(){
+      $titleErrors=[];
+      if($this->title==''){
+        $titleErrors[]='Complete the title';
+      }
+      return $titleErrors;
+    }
+    private function validateRating(){
+      $ratingErrors=[];
+      if(is_numeric($this->raiting))
+      {
+        if($this->raiting<0 || $this->raiting>10){
+          $ratingErrors[]='The rating must be between 0 and 10.';
+        }
+      }else {
+        $ratingErrors[]='The rating must be number.';
+      }
+      return $ratingErrors;
+    }
+    private function validateAwards(){
+
+      $awardErrors=[];
+      if(is_numeric($this->awards))
+      {
+        if($this->awards<0){
+          $awardErrors[]='The number of awards must be greater than 0.';
+        }
+      }else {
+        $awardErrors[]='The number of awards must be number.';
+      }
+      return $awardErrors;
+    }
+    private function validateLength(){
+      //Validate length
+
+      $lengthErrors=[];
+      if(is_numeric($this->length))
+      {
+        if($this->length<0){
+          $lengthErrors[]='The length must be greater than 0.';
+        }
+      }else {
+        $lengthErrors[]='The length must be number.';
+      }
+      return $lengthErrors;
+    }
+
 
     /**
      * Get the value of Id

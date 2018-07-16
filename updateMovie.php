@@ -15,7 +15,16 @@ $genres = Genres::ObtenerTodos();
 $movie = new Movie("","","","","","","","","");
 if($_POST){
 
-$movie = new Movie("","","",$_POST["title"],$_POST["rating"],$_POST["awards"],"",$_POST["length"],$_POST["genre"]);
+  if(isset($_POST["genre"])){
+    $genreId=$_POST["genre"];
+  }
+  else {
+    $genreId='';
+  }
+
+$movie = new Movie("","","",$_POST["title"],$_POST["rating"],$_POST["awards"],"",$_POST["length"],$genreId);
+
+$errors=$movie->validate();
 
 }
 //var_dump($genres);
@@ -47,7 +56,17 @@ $movie = new Movie("","","",$_POST["title"],$_POST["rating"],$_POST["awards"],""
   <form role="form" method="post" enctype="multipart/form-data">
     <h2>Complete the movie information. </h2>
     <hr class="colorgraph">
+    <?php if($errors) : ?>
+    <div class="alert alert-danger" role="alert">
+    <ul>
+      <?php foreach($errors as $error): ?>
 
+         <li><?=$error ?></li>
+
+     <?php endforeach; ?>
+      </ul>
+    </div>
+    <?php endif; ?>
 
 
     <div class="row">
@@ -65,7 +84,7 @@ $movie = new Movie("","","",$_POST["title"],$_POST["rating"],$_POST["awards"],""
             <div class="col-xs-12 col-sm-12 col-md-12">
               <div class="form-group ">
                  <select class="selectpicker form-control input-lg" name="genre" id="genre">
-                   <option disabled selected >Genre</option>
+                   <option readonly="readonly" selected value='-1'>Genre</option>
 <?php foreach($genres as $genre): ?>
 
                     <?php if ($genre->getId()==$movie->getGenreId()): ?>
