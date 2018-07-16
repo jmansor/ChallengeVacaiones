@@ -6,7 +6,7 @@ require_once("Clases/genres.php");
 require_once("Clases/genre.php");
 
 $genres = Genres::ObtenerTodos();
-
+$errors=[];
  if (!isLogued()) {
    header('location: login.php');
    exit;
@@ -25,6 +25,12 @@ if($_POST){
 $movie = new Movie("","","",$_POST["title"],$_POST["rating"],$_POST["awards"],"",$_POST["length"],$genreId);
 
 $errors=$movie->validate();
+
+if(empty($errors)){
+  $movie->saveMovie();
+  header('location: movies.php');
+  exit;
+}
 
 }
 //var_dump($genres);

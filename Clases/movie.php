@@ -36,9 +36,18 @@ function __construct($id,$createdAt,$updatedAt,$title,$raiting,$awards,$releaseD
     $errors=array_merge($this->validateRating(),$errors);
     $errors=array_merge($this->validateAwards(),$errors);
     $errors=array_merge($this->validateLength(),$errors);
-    $errors=array_merge($this->validateGenre(),$errors);
+
     return $errors;
     }
+
+    public function saveMovie(){
+
+      include("dbConecction.php"); //Esto debe estar mal asi, refactor
+    $sql = "INSERT INTO movies_db.movies (created_at,updated_at,title,rating,awards,length,genre_id) VALUES (NOW(),NOW(),'{$this->title}','{$this->raiting}','{$this->awards}','{$this->length}','{$this->genreID}')";
+      $result = $db->query($sql);
+    
+    }
+
     private function validateGenre(){
       $genreErrors=[];
       if($this->genreID=='-1'){
