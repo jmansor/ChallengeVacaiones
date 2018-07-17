@@ -40,12 +40,17 @@ function __construct($id,$createdAt,$updatedAt,$title,$raiting,$awards,$releaseD
     return $errors;
     }
 
-    public function saveMovie(){
-
+    public function updateMovie(){
       include("dbConecction.php"); //Esto debe estar mal asi, refactor
-    $sql = "INSERT INTO movies_db.movies (created_at,updated_at,title,rating,awards,length,genre_id) VALUES (NOW(),NOW(),'{$this->title}','{$this->raiting}','{$this->awards}','{$this->length}','{$this->genreID}')";
+      $sql = "UPDATE movies_db.movies SET title = '{$this->title}', rating = '{$this->raiting}',awards='{$this->awards}',length='{$this->length}',genre_id='{$this->genreID}' WHERE id ='{$this->id}'";
+      
       $result = $db->query($sql);
-    
+    }
+
+    public function saveMovie(){
+      include("dbConecction.php"); //Esto debe estar mal asi, refactor
+      $sql = "INSERT INTO movies_db.movies (created_at,updated_at,title,rating,awards,length,genre_id) VALUES (NOW(),NOW(),'{$this->title}','{$this->raiting}','{$this->awards}','{$this->length}','{$this->genreID}')";
+      $result = $db->query($sql);
     }
 
     private function validateGenre(){

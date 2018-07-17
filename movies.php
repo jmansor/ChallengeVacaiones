@@ -41,24 +41,32 @@ $todasLasPeliculas = Movies::ObtenerTodos();
     <div class="card-body">
     <h5 class="card-title"><?=$pelicula->getTitle();?></h5>
     <p class="card-text"><?=$pelicula->getRaiting();?></p>
-    <div class="container">
-	<div class="row justify-content-around">
-<a href="#" class="btn btn-primary a-btn-slide-text">
-        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-        <span><strong>Add</strong></span>
-    </a>
-    <a href="#" class="btn btn-primary a-btn-slide-text">
-        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-        <span><strong>Edit</strong></span>
-    </a>
-    <a href="#" class="btn btn-primary a-btn-slide-text">
-        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-        <span><strong>View</strong></span>
-    </a>
-    <a href="#" class="btn btn-primary a-btn-slide-text">
-       <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-        <span><strong>Delete</strong></span>
-    </a>
+    <div class="container align-self-end">
+	<div class="row justify-content-around ">
+
+<!-- //***************************no se si esta bien esconder inputs y poner un form para un boton****************************// -->
+    <form class="" action="updateMovie.php" method="get">
+      <input hidden type="text" name="id" value="<?=$pelicula->getId();?>">
+  <button type="submit" class="btn btn-primary " name="">
+    <span class="ion-edit" aria-hidden="true"></span>
+    <span><strong>Edit</strong></span>
+  </button>
+    </form>
+    <!-- <a href="#" class="btn btn-primary a-btn-slide-text">
+
+    </a> -->
+    <form class="" action="index.php" method="get">
+
+  <button type="submit" class="btn btn-danger " name="">
+    <span class="ion-android-delete" aria-hidden="true"></span>
+    <span><strong>Delete</strong></span>
+  </button>
+    </form>
+
+
+
+
+
 	</div>
 </div>
     </div>

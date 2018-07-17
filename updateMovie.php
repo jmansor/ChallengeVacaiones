@@ -5,32 +5,52 @@ require_once("Clases/movie.php");
 require_once("Clases/genres.php");
 require_once("Clases/genre.php");
 
-$genres = Genres::ObtenerTodos();
-$errors=[];
- if (!isLogued()) {
-   header('location: login.php');
-   exit;
-  	}
-
-$movie = new Movie("","","","","","","","","");
-if($_POST){
-
-  if(isset($_POST["genre"])){
-    $genreId=$_POST["genre"];
-  }
-  else {
-    $genreId='';
-  }
-
-$movie = new Movie("","","",$_POST["title"],$_POST["rating"],$_POST["awards"],"",$_POST["length"],$genreId);
-
-$errors=$movie->validate();
-
-if(empty($errors)){
-  $movie->saveMovie();
-  header('location: movies.php');
+if (!isLogued()) {
+  header('location: login.php');
   exit;
 }
+// var_dump($_GET);
+// echo '<br>';
+// var_dump($_POST);
+// echo '<br>';
+
+$genres = Genres::ObtenerTodos();
+$errors=[];
+$movie = new Movie("","","","","","","","","");
+$buttonAction = 'Add movie';
+if(isset($_POST["id"])||isset($_GET["id"])){
+  $buttonAction = 'Update movie';
+}
+
+if(isset($_GET["id"])){
+  $movie = Movies::ObtenerPorId($_GET["id"]);
+}
+
+//var_dump($movie);
+
+if($_POST){
+
+          if(isset($_POST["genre"])){
+            $genreId=$_POST["genre"];
+          }
+          else {
+            $genreId='';
+          }
+
+        $movie = new Movie($_POST["id"],"","",$_POST["title"],$_POST["rating"],$_POST["awards"],"",$_POST["length"],$genreId);
+        $errors=$movie->validate();
+        if(empty($errors)){
+          if($_POST["id"]==""){
+            $movie->saveMovie();
+          }
+          else {
+           $movie->updateMovie();
+          }
+
+          header('location: movies.php');
+          exit;
+
+  }
 
 }
 //var_dump($genres);
@@ -81,6 +101,9 @@ if(empty($errors)){
       <!-- Titulo -->
       <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group ">
+
+          <input hidden type="text" name="id" value="<?=$movie->getId();?>" id="id" class="form-control input-lg" placeholder="Title" tabindex="3">
+
           <input type="text" name="title" value="<?=$movie->getTitle();?>" id="title" class="form-control input-lg" placeholder="Title" tabindex="3">
         </div>
       </div>
@@ -135,7 +158,7 @@ if(empty($errors)){
 
     <hr class="colorgraph">
     <div class="row justify-content-around">
-      <div class="col-xs-12 col-md-6"><input type="submit" value="Add Movie" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
+      <div class="col-xs-12 col-md-6"><input type="submit" value="<?=$buttonAction?>" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
 
     </div>
   </form>
