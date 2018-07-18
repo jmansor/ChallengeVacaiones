@@ -55,8 +55,8 @@ $todasLasPeliculas = Movies::ObtenerTodos();
     <!-- <a href="#" class="btn btn-primary a-btn-slide-text">
 
     </a> -->
-    <form class="" action="index.php" method="get">
-
+    <form class="" action="deleteMovie.php" method="post">
+      <input hidden type="text" name="id" value="<?=$pelicula->getId();?>">
   <button type="submit" class="btn btn-danger " name="">
     <span class="ion-android-delete" aria-hidden="true"></span>
     <span><strong>Delete</strong></span>

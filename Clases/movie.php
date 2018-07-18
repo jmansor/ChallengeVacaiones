@@ -40,10 +40,18 @@ function __construct($id,$createdAt,$updatedAt,$title,$raiting,$awards,$releaseD
     return $errors;
     }
 
+    public function deleteMovie(){
+      include("dbConecction.php"); //Esto debe estar mal asi, refactor
+      $sql = "DELETE FROM movies_db.movies WHERE id ='{$this->id}'";
+
+      $result = $db->query($sql);
+    
+    }
+
     public function updateMovie(){
       include("dbConecction.php"); //Esto debe estar mal asi, refactor
       $sql = "UPDATE movies_db.movies SET title = '{$this->title}', rating = '{$this->raiting}',awards='{$this->awards}',length='{$this->length}',genre_id='{$this->genreID}' WHERE id ='{$this->id}'";
-      
+
       $result = $db->query($sql);
     }
 
