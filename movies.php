@@ -1,16 +1,19 @@
 <?php
  require_once("functions.php");
-  require_once("Clases/movies.php");
-    require_once("Clases/movie.php");
+ require_once("Clases/movies.php");
+ require_once("Clases/movie.php");
+ require_once("Clases/users.php");
 
 //var_dump($_SESSION);
  if (!isLogued()) {
    header('location: login.php');
    exit;
-  	}
+  }
+
+$userIsAdmin = Users::isAdmin($_SESSION['email']);
 
 $todasLasPeliculas = Movies::ObtenerTodos();
-//var_dump($todasLasPeliculas);
+var_dump($userIsAdmin);
 ?>
 <html>
   <head>
@@ -45,23 +48,28 @@ $todasLasPeliculas = Movies::ObtenerTodos();
 	<div class="row justify-content-around ">
 
 <!-- //***************************no se si esta bien esconder inputs y poner un form para un boton****************************// -->
+
+
+<?php if ($userIsAdmin): ?>
     <form class="" action="updateMovie.php" method="get">
       <input hidden type="text" name="id" value="<?=$pelicula->getId();?>">
-  <button type="submit" class="btn btn-primary " name="">
-    <span class="ion-edit" aria-hidden="true"></span>
-    <span><strong>Edit</strong></span>
-  </button>
+      <button type="submit" class="btn btn-primary " name="">
+        <span class="ion-edit" aria-hidden="true"></span>
+        <span><strong>Edit</strong></span>
+      </button>
     </form>
-    <!-- <a href="#" class="btn btn-primary a-btn-slide-text">
 
-    </a> -->
+
+
+
     <form class="" action="deleteMovie.php" method="post">
       <input hidden type="text" name="id" value="<?=$pelicula->getId();?>">
-  <button type="submit" class="btn btn-danger " name="">
-    <span class="ion-android-delete" aria-hidden="true"></span>
-    <span><strong>Delete</strong></span>
-  </button>
+        <button type="submit" class="btn btn-danger " name="">
+          <span class="ion-android-delete" aria-hidden="true"></span>
+          <span><strong>Delete</strong></span>
+        </button>
     </form>
+    <?php endif; ?>
 
 
 

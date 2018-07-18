@@ -6,6 +6,14 @@ class Users{
   public static $cantidad;
   public static $todosLosUsuarios;
 
+  public static function isAdmin($email){
+    foreach (Users::ObtenerTodos() as $user) {
+      if($user->getEmail()==$email){
+        return ($user->getRole()==2);}
+    }
+    return false;
+  }
+
   public static function ObtenerTodos(){
 
     if(!isset(self::$todosLosUsuarios)){

@@ -75,7 +75,7 @@ if(empty($errors)){
             <span class="group-btn align-items-center">
               <div class="row">
                 <div class="col-xs-12 col-md-6"><input type="submit" value="Sign in" class="btn btn-success btn-block btn-lg" tabindex="7"></div>
-                <div class="col-xs-12 col-md-6"><a href="register.php" class="btn btn-primary btn-block btn-lg">Register</a></div>
+                <div class="col-xs-12 col-md-6"><a href="register.php" class="btn  btn-lg">or Register</a></div>
               </div>
 
             </span>

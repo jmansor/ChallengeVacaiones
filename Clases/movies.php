@@ -6,8 +6,6 @@ require_once("movie.php");
     public static $todasLasPeliculas;
 
     public static function ObtenerPorId($id){
-
-
       foreach (Movies::ObtenerTodos() as $pelicula) {
         if($pelicula->getId()==$id){
           return $pelicula;}
