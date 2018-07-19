@@ -7,7 +7,7 @@ if(isLogued())
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark my-navbar">
 
-<a href="index.php">  <img src="html/images/movie.png" alt="Movie icon" class="icon-ecommerce" href="index.php"></a>
+<a href="index.php">  <img src="html/images/movie.png" alt="Movie icon" class="icon-ecommerce"></a>
 
       <a class="navbar-brand titulo" href="index.php">Movie Challenge</a>
     <button class="navbar-toggler my-toggle-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
