@@ -93,8 +93,8 @@
     </div>
     <div class="row">
 
-      <div class="col-xs-8 col-sm-9 col-md-9">
-         By clicking <strong class="label label-primary">Register</strong>, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a> set out by this site, including our Cookie Use.
+      <div class="col-12 ">
+         By clicking <strong class="label label-primary">Register</strong>, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m"><strong>Terms and Conditions</strong></a> set out by this site, including our Cookie Use.
       </div>
     </div>
 
@@ -114,8 +114,8 @@
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
       <h4 class="modal-title" id="myModalLabel">Terms & Conditions</h4>
     </div>
-    <div class="modal-body">
-      <p>Se que lee las condiciones profe.</p>
+    <div class="modal-body row justify-content-center">
+      <h1>Se que lee las condiciones profe.</h1>
       <img src="html/images/misCondiciones.jpg" alt="">
       <p>Miam Miam Miam Miam Miam Miam Miam Miam Miam Miam Miam Miam Miam Miam Miam </p>
       <p>Miam Miam Miam Miam Miam Miam Miam Miam Miam Miam Miam Miam Miam Miam Miam </p>
