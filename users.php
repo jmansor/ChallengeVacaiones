@@ -65,7 +65,7 @@ $todosLosUsuarios = Users::ObtenerTodos();
                         <th>Name</th>
 						            <th>Email</th>
                         <th>Creation Date</th>
-                        <th>Actions</th>
+                        <!-- <th>Actions</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -88,13 +88,13 @@ $todosLosUsuarios = Users::ObtenerTodos();
                         <td><?=$usuario->getName();?></td>
 						            <td><?=$usuario->getEmail();?></td>
                         <td><?=$usuario->getCreationDate();?></td>
-                        <td >
+                        <!-- <td >
                           <div class="d-flex justify-content-around">
                             <a href="#editEmployeeModal" class="edit" data-toggle="modal"><span class="ion-edit" aria-hidden="true"></span></a>
                             <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"> <span class="ion-android-delete" aria-hidden="true"></span></a>
                           </div>
 
-                        </td>
+                        </td> -->
                     </tr>
                     <tr>
                         <?php endforeach; ?>

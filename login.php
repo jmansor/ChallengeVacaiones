@@ -45,7 +45,9 @@ if(empty($errors)){
     <title>LOGIN</title>
   </head>
   <body>
-
+<h5>//email:admin@movies.com</h5>
+<h5>//pass:adminadmin</h5>
+<h6>//(Para ver funcionalidades de admin.)</h6>
 <div class="container-login  d-flex align-items-center justify-content-around">
   <form role="form" method="post" enctype="multipart/form-data">
         <div class="row login-div">

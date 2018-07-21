@@ -31,61 +31,8 @@ $todasLasPeliculas = Movies::ObtenerTodos();
   </head>
   <body>
 <?php include("nav.php") ?>
-
-<div class="card-container row justify-content-center">
-  <div class="col-11 align-self-start about-card ">
-      <a href="updateMovie.php">+Add new movie</a>
-    </div>
-</div>
- <div class="card-container row justify-content-center ">
-<?php foreach($todasLasPeliculas as $pelicula): ?>
-    <div class="about-card col-11 col-md-3" style="width: 18rem;">
-    <img class="card-img-top card-pic" src="html/images/movie-placeholder.jpg" alt="Card image cap">
-    <div class="card-body">
-    <h5 class="card-title"><?=$pelicula->getTitle();?></h5>
-    <p class="card-text"><?=$pelicula->getRaiting();?></p>
-    <div class="container align-self-end">
-	<div class="row justify-content-around ">
-
-<!-- //***************************no se si esta bien esconder inputs y poner un form para un boton****************************// -->
-
-
-<?php if ($userIsAdmin): ?>
-    <form class="" action="updateMovie.php" method="get">
-      <input hidden type="text" name="id" value="<?=$pelicula->getId();?>">
-      <button type="submit" class="btn btn-primary " name="">
-        <span class="ion-edit" aria-hidden="true"></span>
-        <span><strong>Edit</strong></span>
-      </button>
-    </form>
-
-
-
-
-    <form class="" action="deleteMovie.php" method="post">
-      <input hidden type="text" name="id" value="<?=$pelicula->getId();?>">
-        <button type="submit" class="btn btn-danger " name="">
-          <span class="ion-android-delete" aria-hidden="true"></span>
-          <span><strong>Delete</strong></span>
-        </button>
-    </form>
-    <?php endif; ?>
-
-
-
-
-
-	</div>
-</div>
-    </div>
-  </div>
-  <?php endforeach; ?>
-</div>
-
-</section>
-
-<!--/////////////////////////////////////Viejo termina aca  -->
-
+<br>
+<h5>//Algunas peliculas no se pueden borrar la integridad referencial de la base.</h5>
 <div class="container login-div">
     <div class="table-wrapper">
         <div class="table-title">
@@ -95,7 +42,8 @@ $todasLasPeliculas = Movies::ObtenerTodos();
       </div>
       <div class="col-sm-6 d-flex justify-content-end   ">
         <div class=" justify-content-between">
-          <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">   <span class="add-circle-outline" aria-hidden="true"> Add new Movie</span></a>
+
+          <a  href="updateMovie.php" class="btn btn-success">   <span class="add-circle-outline" aria-hidden="true"> Add new Movie</span></a>
           <!-- <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons"></i> <span>Delete</span></a> -->
         </div>
 
@@ -136,10 +84,29 @@ $todasLasPeliculas = Movies::ObtenerTodos();
                     <td><?=$pelicula->getawards();?></td>
                     <td >
                       <div class="d-flex justify-content-around">
-                        <a href="#editEmployeeModal" class="edit" data-toggle="modal"><span class="ion-edit" aria-hidden="true"></span></a>
+                        <!-- <a href="#editEmployeeModal" class="edit" data-toggle="modal"><span class="ion-edit" aria-hidden="true"></span></a>
                         <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"> <span class="ion-android-delete" aria-hidden="true"></span></a>
-                      </div>
+                      </div> -->
+                      <?php if ($userIsAdmin): ?>
+                          <form class="" action="updateMovie.php" method="get">
+                            <input hidden type="text" name="id" value="<?=$pelicula->getId();?>">
+                            <button type="submit" class="btn btn-primary " name="">
+                              <span class="ion-edit" aria-hidden="true"></span>
+                              <span><strong>Edit</strong></span>
+                            </button>
+                          </form>
 
+
+
+
+                          <form class="" action="deleteMovie.php" method="post">
+                            <input hidden type="text" name="id" value="<?=$pelicula->getId();?>">
+                              <button type="submit" class="btn btn-danger " name="">
+                                <span class="ion-android-delete" aria-hidden="true"></span>
+                                <span><strong>Delete</strong></span>
+                              </button>
+                          </form>
+                          <?php endif; ?>
                     </td>
                 </tr>
                 <tr>

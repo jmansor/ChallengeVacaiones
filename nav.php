@@ -5,7 +5,7 @@ if(isLogued())
  ?>
 
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark my-navbar">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark my-navbar ">
 
 <a href="index.php">  <img src="html/images/movie.png" alt="Movie icon" class="icon-ecommerce"></a>
 

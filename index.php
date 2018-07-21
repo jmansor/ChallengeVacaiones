@@ -23,7 +23,21 @@
     <title>HOME</title>
   </head>
   <body>
+
+
 <?php include("nav.php") ?>
+<div class="container h-100">
+
+    <div class="row justify-content-center align-content-center h-100">
+        <div class="col-4">
+            <h1 class="text-center">Welcome!</h1>
+            <br>
+            <img class="mx-auto d-block" src=html/images/welcome.png>
+
+        </div>
+    </div>
+</div>
+
 
 
   </body>
